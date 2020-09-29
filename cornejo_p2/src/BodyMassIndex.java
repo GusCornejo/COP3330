@@ -5,13 +5,13 @@ public class BodyMassIndex {
     double weight;
 
     //Constructor
-    public BodyMassIndex(double height, double weight) {
+    public BodyMassIndex(double height, double weight){
         this.height = height;
         this.weight = weight;
     }
 
     public double getBmi(){
-        return (703 * weight) / Math.pow(this.height, 2);
+        return (703 * this.weight) / Math.pow(this.height, 2);
     }
 
     public String bmiCat(){

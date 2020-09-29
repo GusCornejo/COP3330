@@ -17,9 +17,9 @@ public class BodyMassIndexTest {
     }
     @Test
     public void testBmiCatMethod(){
-        BodyMassIndex catMethodTest = new BodyMassIndex(-80, -200);
-        assertEquals("BMI category could not be found", catMethodTest.bmiCat());
-        //This will never be the case since the app class does not accept negative values for height and weight
+        BodyMassIndex catMethodTest = new BodyMassIndex(10000, 10000);
+        assertNotEquals("BMI category could not be found", catMethodTest.bmiCat());
+        //bmiCat method should always print a category if integers are positive, which is the case
     }
 
     @Test

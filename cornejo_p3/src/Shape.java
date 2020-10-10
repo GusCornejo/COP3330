@@ -1,9 +1,7 @@
 public abstract class Shape {
-    private final String name;
 
-    public Shape(String name){
-        this.name = name;
+    protected Shape() {
     }
 
-    public abstract String getName();
+    protected abstract String getName();
 }

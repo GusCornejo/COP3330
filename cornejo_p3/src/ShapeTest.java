@@ -71,7 +71,7 @@ class ShapeTest {
 
     @Test
     public void testCubeArea2(){
-        Shape3D shape = new Cube(0.5);
+        Shape shape = new Cube(0.5);
         assertEquals(1.5, shape.getArea());
     }
 

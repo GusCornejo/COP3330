@@ -14,12 +14,12 @@ public class TaskItem {
     private final char checkMark = '√';
 
 
-    public TaskItem(String title, String description, String dueDate) {
+    protected TaskItem(String title, String description, String dueDate) {
 
         if (isTitleValid(title)) {
             this.title = title;
         } else {
-            throw new InvalidTitleException("INVALID TITLE: title must be at least one character long");
+            throw new InvalidTitleException("Invalid title: title must be at least one character long");
         }
         this.description = description;
         if (isDateValid(dueDate)) {
@@ -29,10 +29,10 @@ public class TaskItem {
 
     private boolean isDateValid(String date) {
         if (!isDueDateGiven(date)){
-            throw new InputMismatchException("Please enter a valid date");
+            throw new InputMismatchException("No date was given");
         }
         if (convertStringToDate(date) == null) {
-            throw new InvalidDateException("INVALID date pattern");
+            throw new InvalidDateException("Invalid date pattern");
         }
         return true;
     }
@@ -60,23 +60,23 @@ public class TaskItem {
         return date.length() >= 6 && date.length() <= 10;
     }
 
-    public String getTaskTitle() {
+    protected String getTaskTitle() {
         return title;
     }
 
-    public String getTaskDescription() {
+    protected String getTaskDescription() {
         return description;
     }
 
-    public String getTaskDate() {
+    protected String getTaskDate() {
         return dueDate;
     }
 
-    public boolean getCompletionStatus() {
+    protected boolean getCompletionStatus() {
         return isCompleted;
     }
 
-    public void placeCheckMark(){
+    protected void placeCheckMark(){
         if (description.length() == 0 || description.charAt(description.length() - 1) != checkMark) {
             description = description + " " + checkMark;
             isCompleted = true;
@@ -85,7 +85,7 @@ public class TaskItem {
         }
     }
 
-    public void removeCheckMark(){
+    protected void removeCheckMark(){
         try {
             description = description.replace(checkMark,' ');
             isCompleted = false;
@@ -94,7 +94,7 @@ public class TaskItem {
         }
     }
 
-    public void setTitle(String title) {
+    protected void setTitle(String title) {
         if (isTitleValid(title)) {
             this.title = title;
         } else {
@@ -102,11 +102,11 @@ public class TaskItem {
         }
     }
 
-    public void setDescription(String description) {
+    protected void setDescription(String description) {
         this.description = description;
     }
 
-    public void setDueDate(String dueDate) {
+    protected void setDueDate(String dueDate) {
 
         if (isDateValid(dueDate)){
             this.dueDate = convertDateToString(convertStringToDate(dueDate));

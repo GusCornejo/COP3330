@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-
+//Please run File tests in given order. Otherwise, loadTest may fail for running 1st
 class TaskListTest {
 
     @Test
@@ -92,7 +92,6 @@ class TaskListTest {
         assertThrows(IndexOutOfBoundsException.class, () -> taskList.removeMark(10));
     }
 
-
     @Test
     public void editingTaskFailsWithInvalidIndex(){
         TaskList taskList = new TaskList();
@@ -138,4 +137,82 @@ class TaskListTest {
         assertThrows(IndexOutOfBoundsException.class, () -> taskList.delete(1));
     }
 
+    @Test
+    public void gettingTaskItemTitleSucceedsWithValidIndex(){
+        TaskList taskList = new TaskList();
+        TaskItem taskItem1 = new TaskItem("GetSucceeds1", "", "2020-08-11");
+        taskList.add(taskItem1);
+        assertDoesNotThrow(() -> taskList.getTaskTitle(0));
+    }
+
+    @Test
+    public void gettingTaskItemDescriptionSucceedsWithValidIndex(){
+        TaskList taskList = new TaskList();
+        TaskItem taskItem1 = new TaskItem("GetSucceeds2", "", "2020-08-11");
+        TaskItem taskItem2 = new TaskItem("GetSucceeds3", "", "2020-08-11");
+        TaskItem taskItem3 = new TaskItem("GetSucceeds4", "", "2020-08-11");
+        taskList.add(taskItem1);
+        taskList.add(taskItem2);
+        taskList.add(taskItem3);
+        assertDoesNotThrow(() -> taskList.getTaskDescription(2));
+    }
+
+    @Test
+    public void gettingTaskItemDateSucceedsWithValidIndex(){
+        TaskList taskList = new TaskList();
+        TaskItem taskItem1 = new TaskItem("GetSucceeds5", "", "2020-08-11");
+        TaskItem taskItem2 = new TaskItem("GetSucceeds6", "", "2020-08-11");
+        taskList.add(taskItem1);
+        taskList.add(taskItem2);
+        assertDoesNotThrow(() -> taskList.getTaskDescription(1));
+    }
+
+
+    @Test
+    public void gettingTaskItemTitleFailsWithInvalidIndex(){
+        TaskList taskList = new TaskList();
+        TaskItem taskItem1 = new TaskItem("GetFails1", "", "2020-08-11");
+        taskList.add(taskItem1);
+        assertThrows(IndexOutOfBoundsException.class, () -> taskList.getTaskTitle(5));
+    }
+
+    @Test
+    public void gettingTaskItemDescriptionFailsWithInvalidIndex(){
+        TaskList taskList = new TaskList();
+        TaskItem taskItem1 = new TaskItem("GetFails2", "description", "2020-08-11");
+        TaskItem taskItem2 = new TaskItem("GetFails3", "description", "2020-08-11");
+        taskList.add(taskItem1);
+        taskList.add(taskItem2);
+        assertThrows(IndexOutOfBoundsException.class, () -> taskList.getTaskDescription(2));
+    }
+
+    @Test
+    public void gettingTaskItemDateFailsWithInvalidIndex(){
+        TaskList taskList = new TaskList();
+        TaskItem taskItem1 = new TaskItem("GetFails4", "description", "2021-8-11");
+        taskList.add(taskItem1);
+        assertThrows(IndexOutOfBoundsException.class, () -> taskList.getTaskDate(3));
+    }
+
+    @Test
+    public void gettingTaskItemStatusFailsWithInvalidIndex(){
+        TaskList taskList = new TaskList();
+        TaskItem taskItem1 = new TaskItem("GetFails5", "description", "2020-08-11");
+        taskList.add(taskItem1);
+        assertThrows(IndexOutOfBoundsException.class, () -> taskList.getTaskStatus(1));
+    }
+
+    @Test//Run this one 1st
+    public void writeMethodSucceedsWithValidFileName(){
+        TaskList taskList = new TaskList();
+        TaskItem taskItem1 = new TaskItem("GetFails5", "description", "2020-08-11");
+        taskList.add(taskItem1);
+        assertDoesNotThrow(() -> taskList.write("JUnitTest.txt"));
+    }
+
+    @Test//Run this one 2nd
+    public void loadFileMethodSucceedsWithExistingFile(){
+        TaskList taskList = new TaskList();
+        assertDoesNotThrow(() -> taskList.loadList("JUnitTest.txt"));
+    }
 }

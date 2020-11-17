@@ -53,6 +53,10 @@ public class App {
 
     private void markTask() {
         while (true) {
+            if (taskList.isListEmpty()){
+                System.err.println("Warning: cannot edit anything because list is empty");
+                break;
+            }
             taskList.printUncompletedTaskList();
             int index = getIndex();
             if (taskList.isIndexValid(index)) {
@@ -65,6 +69,10 @@ public class App {
 
     private void unmarkTask() {
         while (true) {
+            if (taskList.isListEmpty()){
+                System.err.println("Warning: cannot edit anything because list is empty");
+                break;
+            }
             taskList.printCompletedTaskList();
             int index = getIndex();
             if (taskList.isIndexValid(index)) {
@@ -77,6 +85,11 @@ public class App {
 
     private void deleteTask() {
         while (true) {
+            if (taskList.isListEmpty()){
+                System.err.println("Warning: cannot delete anything because list is empty");
+                break;
+            }
+            taskList.printList();
             int index = getIndex();
             if (taskList.isIndexValid(index)) {
                 taskList.delete(index);
@@ -94,6 +107,10 @@ public class App {
 
     private void editTask() {
         while (true) {
+            if (taskList.isListEmpty()){
+                System.err.println("Warning: cannot edit anything because list is empty");
+                break;
+            }
             taskList.printList();
             int index = getIndex();
             if (taskList.isIndexValid(index)) {
@@ -175,7 +192,7 @@ public class App {
         }
         return result;
     }
-    public String getFileName(){
+    protected String getFileName(){
         System.out.println("Enter the file name (please include filename extension)");
         String name = input.nextLine();
         if (name.length() == 0){

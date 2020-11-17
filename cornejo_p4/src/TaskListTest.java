@@ -215,4 +215,18 @@ class TaskListTest {
         TaskList taskList = new TaskList();
         assertDoesNotThrow(() -> taskList.loadList("JUnitTest.txt"));
     }
+
+    @Test
+    public void isListEmptyReturnsTrueIfListIsEmpty(){
+        TaskList taskList = new TaskList();
+        assertTrue(taskList::isListEmpty);
+    }
+
+    @Test
+    public void isListEmptyReturnsFalseIfListIsNotEmpty(){
+        TaskList taskList = new TaskList();
+        TaskItem taskItem1 = new TaskItem("EmptyFails", "description", "2020-08-11");
+        taskList.add(taskItem1);
+        assertFalse(taskList::isListEmpty);
+    }
 }

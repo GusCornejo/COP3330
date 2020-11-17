@@ -53,6 +53,10 @@ public class TaskList {
         return taskList.size();
     }
 
+    protected boolean isListEmpty(){
+        return taskList.size() == 0;
+    }
+
     protected void printList(){
         System.out.println("Current tasks:");
         System.out.println("--------------");

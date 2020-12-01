@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Test;
 import java.util.InputMismatchException;
 import static org.junit.jupiter.api.Assertions.*;
 
-class TaskItemTest {
+public class TaskItemTest {
 
     @Test
     public void creatingTaskFailsWithInvalidDueDatePattern() {

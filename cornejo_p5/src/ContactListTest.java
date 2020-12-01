@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ContactListTest {
+public class ContactListTest {
 
     @Test
     public void newListIsEmpty() {
